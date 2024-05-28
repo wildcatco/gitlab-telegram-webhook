@@ -1,24 +1,8 @@
 import { Router } from 'express';
-import { sendGroupMessage } from '../utils/bot';
 import { getNotifications } from '../db';
 import { updateSchedule } from '../utils/schedule';
 
 const router = Router();
-
-router.get('/vote', async (req, res) => {
-  await sendGroupMessage('🔔🔔🔔🔔🔔12시까지 우수연구원 투표🔔🔔🔔🔔🔔');
-  return res.status(200).send('vote notification success!');
-});
-
-router.get('/weekly-report', async (req, res) => {
-  await sendGroupMessage('🔔🔔🔔🔔🔔퇴근 전 주간보고 작성🔔🔔🔔🔔🔔');
-  return res.status(200).send('vote notification success!');
-});
-
-router.get('/scrum', async (req, res) => {
-  await sendGroupMessage('🔔🔔🔔🔔🔔5분후 스크럼🔔🔔🔔🔔🔔');
-  return res.status(200).send('vote notification success!');
-});
 
 router.get('/', async (req, res) => {
   const notifications = await getNotifications();
