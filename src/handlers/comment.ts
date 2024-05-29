@@ -34,6 +34,6 @@ export function handleComment(data: CommentHookData) {
       content,
     });
 
-    return sendGroupMessage(message, { sendToTeam3: author.team === 3 });
+    return sendGroupMessage(message);
   }
 }

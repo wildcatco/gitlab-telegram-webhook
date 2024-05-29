@@ -19,40 +19,6 @@ export function handleMergeRequest(data: MergeRequestHookData) {
       const mrNumber = data.object_attributes.iid;
       const mrTitle = data.object_attributes.title;
       const mrUrl = data.object_attributes.url;
-      const hasAssignee = data.object_attributes.assignee_ids.length;
-      const hasReviewer = data.object_attributes.reviewer_ids.length;
-      const assignee = hasAssignee
-        ? getUserFromId(data.object_attributes.assignee_ids[0])
-        : null;
-      const reviewer = hasReviewer
-        ? getUserFromId(data.object_attributes.reviewer_ids[0])
-        : null;
-
-      if (assignee) {
-        const message = generateReviewerAssignedMessage({
-          creator: mrCreatorName,
-          number: mrNumber,
-          title: mrTitle,
-          url: mrUrl,
-        });
-        sendPrivateMessage({
-          user: assignee,
-          message,
-        });
-      }
-
-      if (reviewer) {
-        const message = generateReviewerAssignedMessage({
-          creator: mrCreatorName,
-          number: mrNumber,
-          title: mrTitle,
-          url: mrUrl,
-        });
-        sendPrivateMessage({
-          user: reviewer,
-          message,
-        });
-      }
 
       const message = generateMrCreateMessage({
         creator: mrCreatorName,
@@ -96,7 +62,7 @@ export function handleMergeRequest(data: MergeRequestHookData) {
           sendPrivateMessage({
             user,
             message,
-          })
+          }),
         );
       });
 
