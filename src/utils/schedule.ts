@@ -1,6 +1,6 @@
 import schedule from 'node-schedule';
-import { URL } from '../constants/url';
 import { getNotifications } from '../db';
+import { sendGroupMessage } from './bot';
 
 export async function updateSchedule() {
   Object.values(schedule.scheduledJobs).forEach((job) => {
@@ -10,13 +10,8 @@ export async function updateSchedule() {
   const notifications = await getNotifications();
   notifications.map(({ id, message, year, month, date, hour, minute }) => {
     schedule.scheduleJob(new Date(year, month - 1, date, hour, minute), () => {
-      fetch(`${URL}/notify`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message, id }),
-      });
+      sendGroupMessage(message);
+      db.delete(`/${id}`);
     });
   });
 }
