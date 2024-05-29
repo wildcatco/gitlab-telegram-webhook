@@ -17,7 +17,10 @@ USER_INFO.forEach((user) => {
   }
 });
 
-export function sendGroupMessage(message: string, sendToTeam3 = false) {
+export function sendGroupMessage(
+  message: string,
+  { sendToTeam3 }: { sendToTeam3: boolean } = { sendToTeam3: false }
+) {
   sendToMentionedUser(message);
 
   return Promise.all([
@@ -57,12 +60,12 @@ export function sendToMentionedUser(message: string) {
   }
 
   const gitlabIds = USER_INFO.filter((user) => !!user.token).map(
-    (user) => user.gitlabId
+    (user) => user.username
   );
   matches.forEach((match) => {
     const gitlabId = match.replace('@', '');
     if (gitlabIds.includes(gitlabId)) {
-      const user = USER_INFO.find((user) => user.gitlabId === gitlabId);
+      const user = USER_INFO.find((user) => user.username === gitlabId);
       if (user) {
         sendPrivateMessage({
           name: user.name,

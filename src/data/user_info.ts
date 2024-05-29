@@ -4,7 +4,7 @@ export const USER_INFO: User[] = [
   {
     id: 141,
     name: '지후',
-    gitlabId: '2023767',
+    username: '2023767',
     team: 2,
     token: process.env.JIHOO_TOKEN,
     chatId: process.env.JIHOO_CHAT_ID,
@@ -12,7 +12,7 @@ export const USER_INFO: User[] = [
   {
     id: 132,
     name: '동환',
-    gitlabId: 'donghwan_park',
+    username: 'donghwan_park',
     team: 2,
     token: process.env.DONGHWAN_TOKEN,
     chatId: process.env.DONGHWAN_CHAT_ID,
@@ -20,7 +20,7 @@ export const USER_INFO: User[] = [
   {
     id: 97,
     name: '정환',
-    gitlabId: 'kimjeonghwan',
+    username: 'kimjeonghwan',
     team: 2,
     token: process.env.JEONGHWAN_TOKEN,
     chatId: process.env.JEONGHWAN_CHAT_ID,
@@ -28,7 +28,7 @@ export const USER_INFO: User[] = [
   {
     id: 24,
     name: '정우',
-    gitlabId: '2020329',
+    username: '2020329',
     team: 2,
     token: process.env.JEONGWOO_TOKEN,
     chatId: process.env.JEONGWOO_CHAT_ID,
@@ -36,7 +36,7 @@ export const USER_INFO: User[] = [
   {
     id: 122,
     name: '중선',
-    gitlabId: '2023266',
+    username: '2023266',
     team: 2,
     token: process.env.JUNGSEON_TOKEN,
     chatId: process.env.JUNGSEON_CHAT_ID,
@@ -44,7 +44,7 @@ export const USER_INFO: User[] = [
   {
     id: 90,
     name: '준만',
-    gitlabId: 'JunmanChoi',
+    username: 'JunmanChoi',
     team: 2,
     token: process.env.JUNMAN_TOKEN,
     chatId: process.env.JUNMAN_CHAT_ID,
@@ -52,7 +52,7 @@ export const USER_INFO: User[] = [
   {
     id: 126,
     name: '현규',
-    gitlabId: 'hyounkyu_oh',
+    username: 'hyounkyu_oh',
     team: 2,
     token: process.env.HYEONGYU_TOKEN,
     chatId: process.env.HYEONGYU_CHAT_ID,
@@ -60,7 +60,7 @@ export const USER_INFO: User[] = [
   {
     id: 164,
     name: '병호',
-    gitlabId: 'byongho_lee',
+    username: 'byongho_lee',
     team: 2,
     token: process.env.BYONGHO_TOKEN,
     chatId: process.env.BYONGHO_CHAT_ID,
@@ -70,55 +70,55 @@ export const USER_INFO: User[] = [
   {
     id: 11,
     name: '정우(3팀)',
-    gitlabId: 'jungwoo_lee4',
+    username: 'jungwoo_lee4',
     team: 3,
   },
   {
     id: 12,
     name: '용성(3팀)',
-    gitlabId: 'yongsung_cheon',
+    username: 'yongsung_cheon',
     team: 3,
   },
   {
     id: 165,
     name: '규영(3팀)',
-    gitlabId: 'gyuyoung_kwauk',
+    username: 'gyuyoung_kwauk',
     team: 3,
   },
   {
     id: 15,
     name: '용희(3팀)',
-    gitlabId: 'yonghee_choi',
+    username: 'yonghee_choi',
     team: 3,
   },
   {
     id: 79,
     name: '진하(3팀)',
-    gitlabId: 'jinha_yoo',
+    username: 'jinha_yoo',
     team: 3,
   },
   {
     id: 137,
     name: '창진(3팀)',
-    gitlabId: 'changjin_kang',
+    username: 'changjin_kang',
     team: 3,
   },
   {
     id: 86,
     name: '영하(3팀)',
-    gitlabId: '2022672',
+    username: '2022672',
     team: 3,
   },
   {
     id: 149,
     name: '준형(3팀)',
-    gitlabId: 'junhyeong_park2',
+    username: 'junhyeong_park2',
     team: 3,
   },
   {
     id: 144,
     name: '태환(3팀)',
-    gitlabId: 'taehwan_bang',
+    username: 'taehwan_bang',
     team: 3,
   },
 ];

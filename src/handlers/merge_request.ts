@@ -6,7 +6,7 @@ import {
   generateMrCreateMessage,
   generateReviewerAssignedMessage,
 } from '../utils/messages';
-import { getUserFromGitlabId, getUserFromId } from '../utils/users';
+import { getUserFromUsername, getUserFromId } from '../utils/users';
 
 export function handleMergeRequest(data: MergeRequestHookData) {
   const action = data.object_attributes.action;
@@ -14,7 +14,7 @@ export function handleMergeRequest(data: MergeRequestHookData) {
   switch (action) {
     case 'open':
     case 'reopen': {
-      const user = getUserFromGitlabId(data.user.username);
+      const user = getUserFromUsername(data.user.username);
       const mrCreatorName = user.name;
       const mrNumber = data.object_attributes.iid;
       const mrTitle = data.object_attributes.title;
@@ -52,18 +52,17 @@ export function handleMergeRequest(data: MergeRequestHookData) {
         });
       }
 
-      return sendGroupMessage(
-        generateMrCreateMessage({
-          creator: mrCreatorName,
-          number: mrNumber,
-          title: mrTitle,
-          url: mrUrl,
-        })
-      );
+      const message = generateMrCreateMessage({
+        creator: mrCreatorName,
+        number: mrNumber,
+        title: mrTitle,
+        url: mrUrl,
+      });
+      return sendGroupMessage(message);
     }
 
     case 'update': {
-      const user = getUserFromGitlabId(data.user.username);
+      const user = getUserFromUsername(data.user.username);
       const mrCreatorName = user.name;
       const mrNumber = data.object_attributes.iid;
       const mrTitle = data.object_attributes.title;
@@ -86,7 +85,7 @@ export function handleMergeRequest(data: MergeRequestHookData) {
       newReviewers.forEach((reviewer) => {
         promises.push(
           sendPrivateMessage({
-            name: getUserFromGitlabId(reviewer.username).name,
+            name: getUserFromUsername(reviewer.username).name,
             message: generateReviewerAssignedMessage({
               creator: mrCreatorName,
               number: mrNumber,
@@ -101,36 +100,34 @@ export function handleMergeRequest(data: MergeRequestHookData) {
     }
 
     case 'merge': {
-      const user = getUserFromGitlabId(data.user.username);
+      const user = getUserFromUsername(data.user.username);
       const mrCreatorName = user.name;
       const mrNumber = data.object_attributes.iid;
       const mrTitle = data.object_attributes.title;
       const mrUrl = data.object_attributes.url;
 
-      return sendGroupMessage(
-        generateMergedMessage({
-          creator: mrCreatorName,
-          number: mrNumber,
-          title: mrTitle,
-          url: mrUrl,
-        })
-      );
+      const message = generateMergedMessage({
+        creator: mrCreatorName,
+        number: mrNumber,
+        title: mrTitle,
+        url: mrUrl,
+      });
+      return sendGroupMessage(message);
     }
 
     case 'approved': {
       const mrNumber = data.object_attributes.iid;
-      const reviewer = getUserFromGitlabId(data.user.username).name;
+      const reviewer = getUserFromUsername(data.user.username).name;
       const mrTitle = data.object_attributes.title;
       const mrUrl = data.object_attributes.url;
 
-      return sendGroupMessage(
-        generateApprovedMessage({
-          reviewer,
-          number: mrNumber,
-          title: mrTitle,
-          url: mrUrl,
-        })
-      );
+      const message = generateApprovedMessage({
+        reviewer,
+        number: mrNumber,
+        title: mrTitle,
+        url: mrUrl,
+      });
+      return sendGroupMessage(message);
     }
   }
 }
