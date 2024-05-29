@@ -29,26 +29,28 @@ export function handleMergeRequest(data: MergeRequestHookData) {
         : null;
 
       if (assignee) {
+        const message = generateReviewerAssignedMessage({
+          creator: mrCreatorName,
+          number: mrNumber,
+          title: mrTitle,
+          url: mrUrl,
+        });
         sendPrivateMessage({
-          name: assignee.name,
-          message: generateReviewerAssignedMessage({
-            creator: mrCreatorName,
-            number: mrNumber,
-            title: mrTitle,
-            url: mrUrl,
-          }),
+          user: assignee,
+          message,
         });
       }
 
       if (reviewer) {
+        const message = generateReviewerAssignedMessage({
+          creator: mrCreatorName,
+          number: mrNumber,
+          title: mrTitle,
+          url: mrUrl,
+        });
         sendPrivateMessage({
-          name: reviewer.name,
-          message: generateReviewerAssignedMessage({
-            creator: mrCreatorName,
-            number: mrNumber,
-            title: mrTitle,
-            url: mrUrl,
-          }),
+          user: reviewer,
+          message,
         });
       }
 
@@ -83,15 +85,17 @@ export function handleMergeRequest(data: MergeRequestHookData) {
 
       const promises: Promise<void>[] = [];
       newReviewers.forEach((reviewer) => {
+        const user = getUserFromId(reviewer.id);
+        const message = generateReviewerAssignedMessage({
+          creator: mrCreatorName,
+          number: mrNumber,
+          title: mrTitle,
+          url: mrUrl,
+        });
         promises.push(
           sendPrivateMessage({
-            name: getUserFromUsername(reviewer.username).name,
-            message: generateReviewerAssignedMessage({
-              creator: mrCreatorName,
-              number: mrNumber,
-              title: mrTitle,
-              url: mrUrl,
-            }),
+            user,
+            message,
           })
         );
       });

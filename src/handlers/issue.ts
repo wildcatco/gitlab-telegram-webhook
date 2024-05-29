@@ -29,12 +29,12 @@ export function handleIssue(data: IssueHookData) {
       return sendGroupMessage(message);
     }
     case 'close': {
-      const issueCreator = getUserFromUsername(data.user.username).name;
+      const creatorName = getUserFromUsername(data.user.username).name;
       const number = data.object_attributes.id;
       const title = data.object_attributes.title;
       const url = data.object_attributes.url;
       const message = generateIssueClosedMessage({
-        creator: issueCreator,
+        creator: creatorName,
         title,
         number,
         url,

@@ -1,5 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { USER_INFO } from '../data/user_info';
+import { User } from '../types/user';
 
 const groupChatId = process.env.GROUP_CHAT_ID!;
 const groupToken = process.env.GROUP_TOKEN!;
@@ -35,21 +36,18 @@ export function sendGroupMessage(
 }
 
 export async function sendPrivateMessage({
-  name,
+  user,
   message,
 }: {
-  name: string;
+  user: User;
   message: string;
 }) {
-  const privateBot = privateBots[name];
-  const user = USER_INFO.find((user) => user.name === name);
-  if (!user || !user.chatId) {
-    throw new Error('유저 정보를 찾을 수 없습니다.');
+  const privateBot = privateBots[user.name];
+  if (user.chatId) {
+    privateBot.sendMessage(user.chatId, message, {
+      disable_web_page_preview: true,
+    });
   }
-
-  privateBot.sendMessage(user.chatId, message, {
-    disable_web_page_preview: true,
-  });
 }
 
 export function sendToMentionedUser(message: string) {
@@ -59,16 +57,16 @@ export function sendToMentionedUser(message: string) {
     return;
   }
 
-  const gitlabIds = USER_INFO.filter((user) => !!user.token).map(
+  const usernames = USER_INFO.filter((user) => !!user.token).map(
     (user) => user.username
   );
   matches.forEach((match) => {
-    const gitlabId = match.replace('@', '');
-    if (gitlabIds.includes(gitlabId)) {
-      const user = USER_INFO.find((user) => user.username === gitlabId);
+    const username = match.replace('@', '');
+    if (usernames.includes(username)) {
+      const user = USER_INFO.find((user) => user.username === username);
       if (user) {
         sendPrivateMessage({
-          name: user.name,
+          user,
           message,
         });
       }
