@@ -4,7 +4,9 @@ import { sendGroupMessage } from './bot';
 export function registerCronJobs() {
   // 우수연구원 투표 (월요일 오전 10시)
   cron.schedule('0 0 10 * * 1', () => {
-    sendGroupMessage('🔔🔔🔔🔔🔔12시까지 우수연구원 투표🔔🔔🔔🔔🔔');
+    sendGroupMessage(
+      '🔔🔔🔔🔔🔔12시까지 우수연구원 투표 https://vote-jade.vercel.app/vote🔔🔔🔔🔔🔔'
+    );
   });
 
   // 주간 보고서 작성 (금요일 오후 4시)
