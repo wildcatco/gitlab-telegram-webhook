@@ -65,6 +65,14 @@ export const USER_INFO: User[] = [
     token: process.env.BYONGHO_TOKEN,
     chatId: process.env.BYONGHO_CHAT_ID,
   },
+  {
+    id: 172,
+    name: '지안',
+    username: '2024439',
+    team: 2,
+    token: process.env.JIAN_TOKEN,
+    chatId: process.env.JIAN_CHAT_ID,
+  },
 
   // 3팀
   {
