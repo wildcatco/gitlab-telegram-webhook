@@ -18,14 +18,6 @@ export const USER_INFO: User[] = [
     chatId: process.env.DONGHWAN_CHAT_ID,
   },
   {
-    id: 97,
-    name: '정환',
-    username: 'kimjeonghwan',
-    team: 2,
-    token: process.env.JEONGHWAN_TOKEN,
-    chatId: process.env.JEONGHWAN_CHAT_ID,
-  },
-  {
     id: 24,
     name: '정우',
     username: '2020329',
@@ -40,14 +32,6 @@ export const USER_INFO: User[] = [
     team: 2,
     token: process.env.JUNGSEON_TOKEN,
     chatId: process.env.JUNGSEON_CHAT_ID,
-  },
-  {
-    id: 90,
-    name: '준만',
-    username: 'JunmanChoi',
-    team: 2,
-    token: process.env.JUNMAN_TOKEN,
-    chatId: process.env.JUNMAN_CHAT_ID,
   },
   {
     id: 126,
